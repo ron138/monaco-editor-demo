@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monaco Editor</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+    #editor-container {
+      width: 100%;
+      height: 100vh; /* העורך יתפוס את כל המסך */
+    }
+  </style>
+</head>
+<body>
+  <div id="editor-container"></div>
+  
+  <script>
+    // הגדרות לטעינת Monaco Editor
+    require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.0/min/vs' } });
+
+    // טוען את העורך
+    require(['vs/editor/editor.main'], function() {
+      monaco.editor.create(document.getElementById('editor-container'), {
+        value: [
+          '// You can write your JavaScript code here!',
+          'function greet() {',
+          '    console.log("Hello, Monaco Editor!");',
+          '}',
+          'greet();'
+        ].join('\n'), // קוד לדוגמה שיוצג בעורך
+        language: 'javascript', // הגדרת שפת הקוד
+        theme: 'vs-dark' // ערכת צבעים כהה
+      });
+    });
+  </script>
+</body>
+</html>
